@@ -127,6 +127,8 @@ be treated as a static, compile-time error?
 ----------------------------------------------------------------------
 Technology:
 
+    http://docs.racket-lang.org/scriblib/render-cond.html
+
     Racket/DrRacket: how do we select a new role when rendering?
 
     Are the documents truly just Scribble documents?  Or do they do something extra?

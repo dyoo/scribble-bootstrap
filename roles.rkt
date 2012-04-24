@@ -1,24 +1,34 @@
-#lang racket
+#lang racket/base
+(require (for-syntax racket/base
+                     racket/block
+                     "compile-time.rkt")
+         (prefix-in scribble: scribble/decode))
 
 (provide defroles role)
 
 
 (define-syntax (defroles stx)
-  (printf "~s\n"  (syntax-local-context))
-  (cond
-    [#t #;(eq? (syntax-local-context) 'module)
-     
-     
-     (syntax-case stx ()
-       [(_ role-structure ...)
-        #'(void)])]
-    
-    [else
-     (raise-syntax-error #f "Roles should only be declared at module toplevel" stx)]))
-
+  (syntax-case stx ()
+    [(_ role-structure ...)
+     #'(begin
+         (begin-for-syntax
+           (for ([r (role-applicable (parse-role #'role-structure))])
+             (install-role! r))
+           ...))]))
 
 
 (define-syntax (role stx)
-  #'fill-me-in)
-                     
-     
+  (syntax-case stx ()
+    [(_ id body ...)
+     (identifier? #'id)
+     (block
+      (define a-role (role-lookup #'id))
+      (cond
+        [(eq? a-role #f)
+         (raise-syntax-error #f 
+                             (format "Could not find defined role ~a in document.  Known roles are: ~a" 
+                                     (syntax-e #'id)
+                                     (known-role-names))
+                             #'id)]
+        [else
+         #'(scribble:splice (list body ...))]))]))
