@@ -24,11 +24,12 @@
      (block
       (define a-role (role-lookup #'id))
       (cond
-        [(eq? a-role #f)
-         (raise-syntax-error #f 
-                             (format "Could not find defined role ~a in document.  Known roles are: ~a" 
-                                     (syntax-e #'id)
-                                     (known-role-names))
-                             #'id)]
-        [else
-         #'(scribble:splice (list body ...))]))]))
+       [(eq? a-role #f)
+        (raise-syntax-error #f 
+                            (format "Could not find defined role ~a in document.  Known roles are: ~a" 
+                                    (syntax-e #'id)
+                                    (known-role-names))
+                            #'id)]
+       [else
+        ;; Fixme: we want to do something conditional here.
+        #'(scribble:splice (list body ...))]))]))
