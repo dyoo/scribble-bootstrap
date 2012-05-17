@@ -1,7 +1,10 @@
 #lang scribble/base
 
 @(require "scribble-tagged.rkt"
-          scribble/manual)
+          scribble/manual
+          (for-label "scribble-tagged.rkt"))
+
+@defmodule["scribble-tagged.rkt"]
 
 
 @declare-tags[student teacher robot]
@@ -36,11 +39,22 @@ This is a message that a teacher should be able to see.
 
 @;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 @tagged-for[(student teacher)]{
-@section{For both students and teachers}
+@section{For either students or teachers}
 This is a message that either a student or teacher can see.
 A robot would not see this message, however.
 }
 @;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+@;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  @tagged-for[teacher]{
+    @tagged-for[student]{
+        @section{Only when both teacher and student tags are enabled}
+        Hello world.
+    }
+  }
+@;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
 
 
 Anything that is not tagged explicitly should be seen by all people.
@@ -82,12 +96,23 @@ Declares the set of tags to be used in this document.  Uses of
 
 @defform[(tagged-for)]{
 
-Blocks off a section of the scribble document with a tag.
+Blocks off a section of the scribble document with a tag.  Acts to exclude all
+but the people who have the named tag.
+@verbatim|{
+@tagged-for[student]{Can be seen by student.}
+@tagged-for[teacher]{Can be seen by teacher.}
+}|
 
-A section can be tagged with multiple elements at a time.
+
+
+A section can be tagged with multiple tags at a time, which acts as union.
+@verbatim|{
+@tagged-for[(student teacher)]{Can be seen by both students and teachers.}
+}|
+
 
 Nested tags act as intersection.  For example:
-@verbatim|{
+@codeblock|{
   @tagged-for[teacher]{
     @tagged-for[student]{
         Hello world.
