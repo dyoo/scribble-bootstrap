@@ -1,6 +1,5 @@
-#lang scribble/base
+#lang planet dyoo/scribble-bootstrap
 
-@(require "bootstrap.rkt")
 @declare-tags[student teacher robot]
 
 @declare-data-repository["bootstrap-data-repository.hashcollision.org"]

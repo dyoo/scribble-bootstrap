@@ -11,7 +11,7 @@
 
 @author+email["Danny Yoo" "dyoo@hashcollision.org"]
 
-@racketmodname["bootstrap.rkt"] provides Scribble document support for the
+@racketmodname/this-package[main] provides Scribble document support for the
 @link["http://bootstrapworld.org"]{Bootstrap} curriculum.  Specifically, it
 allows documents to include conditional content (e.g. generating content for
 teachers or students), as well as commands to embed forms and embedded WeScheme
@@ -24,8 +24,7 @@ Let's say that we have the following document:
 
 @filebox["example.scrbl"]{
 @codeblock|{
-#lang scribble/base
-@(require "bootstrap.rkt")
+#lang planet dyoo/scribble-bootstrap
 
 @title{Example}
 
