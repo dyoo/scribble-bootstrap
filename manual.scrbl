@@ -146,3 +146,8 @@ At the moment, the conditional tag logic is performed at compile-time rather
 than run-time.  This means that if you compile a @filepath{.scrbl} file with
 @litchar{raco make}, that decision has been committed to the bytecode, so that
 if you re-render the document, @litchar{scribble} does not revisit the choice.
+
+
+Scribble itself uses the term "tag" as a mechanism for cross-referencing and
+linking.  The bootstrap support's use of the "tag" term is not the same.  (We
+may want to use different terminology to avoid this conflict.)
