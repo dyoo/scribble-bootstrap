@@ -1,5 +1,6 @@
 #lang planet dyoo/scribble-bootstrap
 
+
 @declare-tags[student teacher robot]
 
 @declare-data-repository["bootstrap-data-repository.hashcollision.org"]
@@ -43,12 +44,12 @@ A robot would not see this message, however.
 
 
 @;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  @tag[teacher]{
+@tag[teacher]{
     @tag[student]{
         @section{Only when both teacher and student tags are enabled}
         Hello world.
     }
-  }
+}
 @;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 

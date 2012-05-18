@@ -13,4 +13,11 @@
 (define-syntax (module-begin stx)
   (syntax-case stx ()
     [(_ id . body)
-     #`(#%module-begin id (lambda (doc) doc) () . body)]))
+     #`(#%module-begin id change-defaults () . body)]))
+
+
+
+;; TODO: we need to change the style of the document here to fit
+;; the CSS styles we want for bootstrap.
+(define (change-defaults doc)
+  doc)
