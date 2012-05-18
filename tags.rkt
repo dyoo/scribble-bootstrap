@@ -6,7 +6,7 @@
                      racket/block))
 
 
-(provide declare-tags tagged-for)
+(provide declare-tags tag)
 
 
 (begin-for-syntax
@@ -52,7 +52,7 @@
            (hash-set! known-tags tag #t)))]))
 
 
-(define-syntax (tagged-for stx)
+(define-syntax (tag stx)
   (syntax-case stx ()
     [(_ tag body ...)
      (identifier? #'tag)
