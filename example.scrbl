@@ -4,6 +4,7 @@
 @declare-tags[student teacher robot]
 
 
+@image["bootstrap.gif"]
 
 
 @;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
