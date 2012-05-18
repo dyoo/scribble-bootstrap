@@ -5,12 +5,13 @@
           planet/scribble
           (for-label "bootstrap.rkt"))
 
-@defmodule/this-package[main]
-
 
 @title{A guide to the racketmodname/this-package[main] Scribble library}
 
 @author+email["Danny Yoo" "dyoo@hashcollision.org"]
+
+
+@defmodule/this-package[main]
 
 @racketmodname/this-package[main] provides Scribble document support for the
 @link["http://bootstrapworld.org"]{Bootstrap} curriculum.  Specifically, it
