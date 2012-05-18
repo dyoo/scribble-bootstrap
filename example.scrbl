@@ -49,3 +49,10 @@ A robot would not see this message, however.
   }
 @;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+
+Here is a fill-in-the-blank: @fill-in-the-blank[#:id "first-example"].
+
+And another: @fill-in-the-blank[#:id "second-example"
+                                #:label "First name"
+                                #:width 90].

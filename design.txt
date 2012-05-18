@@ -154,3 +154,6 @@ the database that I'll be writing in bootstrap-storage.
 
 ----------------------------------------------------------------------
 
+
+We need real control over the style and presentation of the generated
+scribble documentation.
