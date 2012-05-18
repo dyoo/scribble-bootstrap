@@ -9,6 +9,15 @@
 
 @title{A guide to the @racketmodname["bootstrap.rkt"] Scribble library}
 
+@author+email["Danny Yoo" "dyoo@hashcollision.org"]
+
+@racketmodname["bootstrap.rkt"] provides Scribble document support for the
+@link["http://bootstrapworld.org"]{Bootstrap} curriculum.  Specifically, it
+allows documents to include conditional content (e.g. generating content for
+teachers or students), as well as commands to embed forms and embedded WeScheme
+instances.
+
+
 
 @section{Quick and dirty example}
 Let's say that we have the following document:
@@ -18,9 +27,14 @@ Let's say that we have the following document:
 #lang scribble/base
 @(require "bootstrap.rkt")
 
-;; Let us declare the following tags.
+@title{Example}
+
+This is a Scribble document that includes conditional output.
+
+@;; Let us declare the following tags.
 @declare-tags[reading instruction pedagogy exercise skit]
 
+@;; We can tag certain content to be generated conditionally:
 @tag[reading]{This is text for reading.}
 
 @tag[instruction]{
@@ -38,11 +52,16 @@ For example, at the Unix command line:
 @verbatim|{
 $ SCRIBBLE_TAGS=reading scribble example.scrbl
 }|}
-should generate example.html with reading-specific content, and:
+
+should generate the file @filepath{example.html} with content for readers.
+
+We can generate the code in an instructional context:
 @nested[#:style 'inset]{@verbatim|{
 $ SCRIBBLE_TAGS=instruction scribble example.scrbl
 }|}
-should do the same for the instructional context.
+which omits the content for the reading context, and also excludes the 
+pedagogic content.
+
 
 To generate content that shows for both instruction and pedagogy, use quotes
 (@litchar{"}) so the Unix shell allows you to assign multiple tags into
