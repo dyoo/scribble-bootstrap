@@ -2,12 +2,13 @@
 
 @(require "bootstrap.rkt"
           scribble/manual
+          planet/scribble
           (for-label "bootstrap.rkt"))
 
-@defmodule["bootstrap.rkt"]
+@defmodule/this-package[main]
 
 
-@title{A guide to the @racketmodname["bootstrap.rkt"] Scribble library}
+@title{A guide to the racketmodname/this-package[main] Scribble library}
 
 @author+email["Danny Yoo" "dyoo@hashcollision.org"]
 
@@ -75,7 +76,7 @@ will show the content for both instruction and pedagogy.
 
 
 
-@section{Getting started with scribble and the @racketmodname["bootstrap.rkt"] library}
+@section{Getting started}
 
 
 ... fill me in ...
