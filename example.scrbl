@@ -1,5 +1,5 @@
 #lang planet dyoo/scribble-bootstrap
-
+@title{Example}
 
 @declare-tags[student teacher robot]
 

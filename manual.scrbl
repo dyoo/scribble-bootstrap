@@ -6,30 +6,31 @@
           (for-label "bootstrap.rkt"))
 
 
-@title{A guide to the racketmodname/this-package[main] Scribble library}
+@title{A guide to the @racketmodname/this-package[main] Scribble library}
 
 @author+email["Danny Yoo" "dyoo@hashcollision.org"]
 
 
 @defmodule/this-package[main]
 
-@racketmodname/this-package[main] provides Scribble document support for the
-@link["http://bootstrapworld.org"]{Bootstrap} curriculum.  Specifically, it
-allows documents to include conditional content (e.g. generating content for
-teachers or students), as well as commands to embed forms and embedded WeScheme
-instances.
+The @racketmodname/this-package[main] library provides preliminary Scribble
+document support for the @link["http://bootstrapworld.org"]{Bootstrap}
+curriculum.  Specifically, it allows documents to include conditional content
+(e.g. generating content for teachers or students), as well as commands to
+embed forms and embedded WeScheme instances.
+
+It will eventually include support for validating the content of these forms,
+as well as saving the contents of the form to server-side storage.
 
 
 
-@section{Quick and dirty example}
+@section{Getting started}
 Let's say that we have the following document:
 
 @filebox["example.scrbl"]{
 @codeblock|{
 #lang planet dyoo/scribble-bootstrap
-
 @title{Example}
-
 This is a Scribble document that includes conditional output.
 
 @;; Let us declare the following tags.
@@ -77,35 +78,45 @@ will show the content for both instruction and pedagogy.
 
 
 
-@section{Getting started}
-
-
-... fill me in ...
-
-
-
-
 @section{API}
 
-@defform[(declare-tags)]{
+The @racketmodname/this-package[main] library includes a Scribble-based
+language that provides all the bindings of @racketmodname[scribble/base], as
+well as the following forms:
 
-Declares the set of tags to be used in this document.  Uses of
-@racket[tag] will check that they've been declared in a
-@racket[declare-tags].
 
+
+@defform[(declare-tags tags ...)]{
+
+Declares the set of tags that will be used in this document.  Any use of
+@racket[tag] later in the document will verify that the tags have already been
+declared in a @racket[declare-tags].
+
+For example:
+@codeblock|{
+#lang planet dyoo/scribble-bootstrap
+
+@declare-tags[instruction pedagogy example]
+
+}|
 }
 
 
-@defform[(tag)]{
+
+
+@defform[(tag tags body ...)]{
 
 This form acts as an ifdef, and blocks off a section of the scribble document
 with a tag.  Its content shows only in a context that includes the given tag.
 
-@verbatim|{
+For example:
+@codeblock|{
+#lang planet dyoo/scribble-bootstrap
+@declare-tags[student teacher]
+
 @tag[student]{Can be seen by student.}
 @tag[teacher]{Can be seen by teacher.}
 }|
-
 
 
 
@@ -136,6 +147,27 @@ should generate no content unless both the @racket[teacher] and
 Using @racket[tag] with a tag that hasn't been previously declared with
 @racket[declare-tags] is a compile-time error.
 
+
+Tagged content will be generated during Scribble-generation time if the
+@litchar{SCRIBBLE_TAGS} environmental variable includes them.  For example:
+@nested[#:style 'inset]{
+@verbatim|{
+$ SCRIBBLE_TAGS=reading scribble example.scrbl
+}|}
+generates @filepath{example.scrbl} in a context that enables tagged content using the @tt{reading} tag.
+}
+
+
+
+
+@defproc[(fill-in-the-blank [#:id id string?]
+                            [#:width width number? 50]
+                            [#:label label (or/c string? #f) #f])
+         element?]{
+
+Creates an empty one-line text element.  The @racket[#:width] allows
+customization of the width of the element.  The @racket[#:label] element shows
+placeholder text content when the element is empty.
 }
 
 
