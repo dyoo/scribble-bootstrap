@@ -1,4 +1,13 @@
 #lang racket/base
+;; Implementation for the conditional content generation.  We do the
+;; decision for the conditional generation at compile-time.
+;;
+;;
+;; I'm trying to figure out how to do this at run-time instead.  See:
+;; http://lists.racket-lang.org/users/archive/2012-May/052229.html
+;; Hopefully I'll get an answer about this soon.
+
+
 (require racket/splicing
          (prefix-in scribble: scribble/decode)
          (prefix-in scribble: scribble/core)

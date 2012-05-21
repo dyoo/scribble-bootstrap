@@ -18,42 +18,30 @@
 
 
 @;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-@section{For everyone}
+@section{Conditional output}
 Untagged content shows for everyone.
-@;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
-
-@;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 @tag[student]{
-@section{For students}
-This is a message that a student should be able to see.
+@subsection{For students}
+This is a message that a stupendous student should be able to see.
 }
-@;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-@;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 @tag[teacher]{
-@section{For teachers}
-This is a message that a teacher should be able to see.
+@subsection{For teachers}
+This is a message that a terrific teacher can take in.
 }
-@;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
 
 @;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 @tag[(student teacher)]{
-@section{For either students or teachers}
+@subsection{For either students or teachers}
 This is a message that either a student or teacher can see.
 A robot would not see this message, however.
 }
-@;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
-@;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 @tag[teacher]{
     @tag[student]{
-        @section{Only when both teacher and student tags are enabled}
+        @subsection{Only when both teacher and student tags are enabled}
         Hello world.
     }
 }
@@ -76,5 +64,21 @@ And another: @fill-in-the-blank[#:id "first-name"
 
 
 
-@section{Free form text}
+@section{Free response}
 This is a free-response: @free-response[#:id "mytext"].
+
+
+
+@section{Embedded wescheme}
+This is an embedded-wescheme instance:
+@embed-wescheme[#:id 'example1
+                      #:public-id "champ-neigh-stoop-sinew-overt"
+                      #:width "70%"]
+
+
+Here is another one:
+@embed-wescheme[#:id 'example3
+                      #:interactions-text "(+ 1 2 3)"
+                      #:hide-header? #t
+                      #:hide-footer? #t
+                      #:hide-definitions? #t]

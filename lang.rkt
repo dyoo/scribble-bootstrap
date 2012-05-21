@@ -13,7 +13,9 @@
 (define-syntax (module-begin stx)
   (syntax-case stx ()
     [(_ id . body)
-     #`(#%module-begin id change-defaults () . body)]))
+     #`(#%module-begin id change-defaults ()
+                       (inject-embedding-libraries)
+                       . body)]))
 
 
 
