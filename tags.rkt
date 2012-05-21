@@ -7,6 +7,10 @@
 ;; http://lists.racket-lang.org/users/archive/2012-May/052229.html
 ;; Hopefully I'll get an answer about this soon.
 
+;;
+;; Also, we should really be using syntax-parse, as it will let us
+;; provide more robust macros with good error messages.
+
 
 (require racket/splicing
          (prefix-in scribble: scribble/decode)
@@ -68,5 +72,6 @@
      (generate-tagged-for-code stx (list #'tag) #'(body ...))]
 
     [(_ (tag ...) body ...)
+     ;; FIXME: must make sure it's a unique list of identifiers.
      (andmap identifier? (syntax->list #'(tag ...)))
      (generate-tagged-for-code stx (syntax->list #'(tag ...)) #'(body ...))]))

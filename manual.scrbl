@@ -1,9 +1,9 @@
 #lang scribble/base
 
-@(require "bootstrap.rkt"
-          scribble/manual
+@(require scribble/manual
           planet/scribble
-          (for-label "bootstrap.rkt"))
+          (for-label (this-package-in lang)
+                     scribble/base))
 
 
 @title{A guide to the @racketmodname/this-package[main] Scribble library}
@@ -11,7 +11,7 @@
 @author+email["Danny Yoo" "dyoo@hashcollision.org"]
 
 
-@defmodule/this-package[main]
+@declare-exporting/this-package[lang]
 
 The @racketmodname/this-package[main] library provides preliminary Scribble
 document support for the @link["http://bootstrapworld.org"]{Bootstrap}
@@ -173,7 +173,8 @@ element shows placeholder text content when the element is empty.
 Example:
 @codeblock|{
 #lang planet dyoo/scribble-bootstrap
-This is a fill in the blank: @fill-in-the-blank[#:id "name" #:label "What's your name?]
+This is a fill in the blank: @fill-in-the-blank[#:id "name" 
+                                                #:label "What's your name?"]
 }|
 }
 
@@ -184,7 +185,6 @@ This is a fill in the blank: @fill-in-the-blank[#:id "name" #:label "What's your
                         [#:rows height number? 20]
                         [#:label label (or/c string? #f) #f])
          element?]{
-
 Creates an empty multi-line element.  The @racket[#:columns] and
 @racket[#:rows] keywords allow customization of the number of columns and
 rows of the element.  The @racket[#:label] element shows placeholder text
@@ -203,14 +203,24 @@ This is a free-response: @free-response[#:id "summary"]
 
 @defproc[(embedded-wescheme [#:id id string?]
                             [#:width width (or/c number string?) "90%"]
-                            [#:height width (or/c number string?) "500px"]
-                            [#:public-id pid #f]
-                            [#:hide-header? hide-header #f]
-                            [#:hide-footer? hide-footer #t]
-                            [#:hide-definitions? hide-definitions? #f])
+                            [#:height height (or/c number string?) "500px"]
+
+                            [#:public-id pid (or/c string? #f) #f]
+                            [#:interactions-text interactions-text (or/c string #f) #f]
+
+                            [#:hide-header? hide-header boolean? #f]
+                            [#:hide-footer? hide-footer boolean? #t]
+                            [#:hide-definitions? hide-definitions? boolean? #f])
          element?]{
 Creates an embedded WeScheme instance.  The keywords @racket[#:width] and
 @racket[#:height] control the dimensions of the embedded instance.
+
+If provided a @racket[#:public-id], the embedded instance will load the
+published WeScheme program with that id.
+
+If provided a @racket[#:interactions-text], the embedded instance will
+initialize the interactions window with the given string.
+
 }
 
 
