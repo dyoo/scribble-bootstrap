@@ -60,9 +60,18 @@
 (define-syntax (declare-tags stx)
   (syntax-case stx ()
     [(_ tag-name ...)
-     #'(begin-for-syntax
-        (for ([tag '(tag-name ...)])
-           (hash-set! known-tags tag #t)))]))
+     #'(begin
+         (begin-for-syntax
+          (for ([tag '(tag-name ...)])
+               (hash-set! known-tags tag #t)))
+         (define-syntax (tag-name stx-2)
+           (syntax-case stx-2 ()
+             [(_ body (... ...))
+              (syntax/loc stx-2
+                (tag tag-name body (... ...)))]
+             [else
+              (raise-syntax-error #f "~s is a tag, not a normal expression" stx-2)]))
+         ...)]))
 
 
 (define-syntax (tag stx)

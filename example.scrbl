@@ -1,4 +1,4 @@
-#lang planet dyoo/scribble-bootstrap:1
+#lang planet dyoo/scribble-bootstrap:2
 @title{Example}
 
 @; Note: this document can be generated in different contexts.
@@ -25,6 +25,12 @@ Untagged content shows for everyone.
 @subsection{For students}
 This is a message that a stupendous student should be able to see.
 }
+
+@student{For syntactic convenience, each tag itself is bound to a form that does
+the exclusion, like this.}
+
+
+
 
 
 @tag[teacher]{
