@@ -179,7 +179,7 @@ This is a fill in the blank: @fill-in-the-blank[#:id "name" #:label "What's your
 
 
 
-@defproc[(free-form-text [#:id id string?]
+@defproc[(free-response [#:id id string?]
                          [#:width width number? 50]
                          [#:height height number? 20]
                          [#:label label (or/c string? #f) #f])
@@ -193,9 +193,10 @@ content when the element is empty.
 Example:
 @codeblock|{
 #lang planet dyoo/scribble-bootstrap
-This is a free form element: @free-form-text[#:id "summary"]
+This is a free-response: @free-response[#:id "summary"]
 }|
 }
+
 
 
 

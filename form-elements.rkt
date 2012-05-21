@@ -5,7 +5,7 @@
 
 ;; FIXME: must add contracts!
 (provide fill-in-the-blank
-         free-form-text)
+         free-response)
 
 
 
@@ -25,7 +25,7 @@
 
 
 
-(define (free-form-text #:id id
+(define (free-response #:id id
                         #:width (width 50)
                         #:height (height 20)
                         #:label (label #f)
