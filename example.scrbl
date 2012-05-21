@@ -1,6 +1,13 @@
 #lang planet dyoo/scribble-bootstrap
 @title{Example}
 
+@; Note: this document can be generated in different contexts.
+@;
+@; E.g.:    $ SCRIBBLE_TAGS=student scribble example.scrbl
+@;      vs  $ SCRIBBLE_TAGS=teacher scribble example.scrbl
+@;      vs  $ SCRIBBLE_TAGS="student teacher" scribble example.scrbl
+
+
 @declare-tags[student teacher robot]
 
 @declare-data-repository["bootstrap-data-repository.hashcollision.org"]
@@ -53,9 +60,18 @@ A robot would not see this message, however.
 @;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+@section{Fill in the blank}
 
 Here is a fill-in-the-blank: @fill-in-the-blank[#:id "first-example"].
 
 And another: @fill-in-the-blank[#:id "second-example"
                                 #:label "First name"
                                 #:width 90].
+
+
+
+
+
+
+@section{Free form text}
+This is a free-form-text: @free-form-text[#:id "mytext"].

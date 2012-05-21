@@ -25,7 +25,7 @@ as well as saving the contents of the form to server-side storage.
 
 
 @section{Getting started}
-Let's say that we have the following document:
+Let's start with the following document:
 
 @filebox["example.scrbl"]{
 @codeblock|{
@@ -168,7 +168,40 @@ generates @filepath{example.scrbl} in a context that enables tagged content usin
 Creates an empty one-line text element.  The @racket[#:width] allows
 customization of the width of the element.  The @racket[#:label] element shows
 placeholder text content when the element is empty.
+
+
+Example:
+@codeblock|{
+#lang planet dyoo/scribble-bootstrap
+This is a fill in the blank: @fill-in-the-blank[#:id "name" #:label "What's your name?]
+}|
 }
+
+
+
+@defproc[(free-form-text [#:id id string?]
+                         [#:width width number? 50]
+                         [#:height height number? 20]
+                         [#:label label (or/c string? #f) #f])
+         element?]{
+
+Creates an empty multi-line element.  The @racket[#:width] and
+@racket[#:height] keywords allow customization of the number of columns and
+rows of the element.  The @racket[#:label] element shows placeholder text
+content when the element is empty.
+
+Example:
+@codeblock|{
+#lang planet dyoo/scribble-bootstrap
+This is a free form element: @free-form-text[#:id "summary"]
+}|
+}
+
+
+
+
+
+
 
 
 
