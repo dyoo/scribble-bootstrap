@@ -182,7 +182,7 @@ This is a fill in the blank: @fill-in-the-blank[#:id "name"
 
 @defproc[(free-response [#:id id string?]
                         [#:columns columns number? 50]
-                        [#:rows height number? 20]
+                        [#:rows rows number? 20]
                         [#:label label (or/c string? #f) #f])
          element?]{
 Creates an empty multi-line element.  The @racket[#:columns] and
