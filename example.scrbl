@@ -54,10 +54,10 @@ Here is a fill-in-the-blank: @fill-in-the-blank[#:id "first-example"].
 
 And another: @fill-in-the-blank[#:id "first-name"
                                 #:label "First name"
-                                #:width 90]
+                                #:columns 90]
 @fill-in-the-blank[#:id "last-name"
                                 #:label "Last name"
-                                #:width 90].
+                                #:columns 90].
 
 
 

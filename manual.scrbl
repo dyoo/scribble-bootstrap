@@ -161,13 +161,13 @@ generates @filepath{example.scrbl} in a context that enables tagged content usin
 
 
 @defproc[(fill-in-the-blank [#:id id string?]
-                            [#:width width number? 50]
+                            [#:columns columns number? 50]
                             [#:label label (or/c string? #f) #f])
          element?]{
 
-Creates an empty one-line text element.  The @racket[#:width] allows
-customization of the width of the element.  The @racket[#:label] element shows
-placeholder text content when the element is empty.
+Creates an empty one-line text element.  The @racket[#:columns] allows
+customization of the number of columns of the element.  The @racket[#:label]
+element shows placeholder text content when the element is empty.
 
 
 Example:
@@ -180,13 +180,13 @@ This is a fill in the blank: @fill-in-the-blank[#:id "name" #:label "What's your
 
 
 @defproc[(free-response [#:id id string?]
-                        [#:width width number? 50]
-                        [#:height height number? 20]
+                        [#:columns columns number? 50]
+                        [#:rows height number? 20]
                         [#:label label (or/c string? #f) #f])
          element?]{
 
-Creates an empty multi-line element.  The @racket[#:width] and
-@racket[#:height] keywords allow customization of the number of columns and
+Creates an empty multi-line element.  The @racket[#:columns] and
+@racket[#:rows] keywords allow customization of the number of columns and
 rows of the element.  The @racket[#:label] element shows placeholder text
 content when the element is empty.
 
@@ -200,7 +200,18 @@ This is a free-response: @free-response[#:id "summary"]
 
 
 
-@defproc[(embedded-wescheme)]
+
+@defproc[(embedded-wescheme [#:id id string?]
+                            [#:width width (or/c number string?) "90%"]
+                            [#:height width (or/c number string?) "500px"]
+                            [#:public-id pid #f]
+                            [#:hide-header? hide-header #f]
+                            [#:hide-footer? hide-footer #t]
+                            [#:hide-definitions? hide-definitions? #f])
+         element?]{
+Creates an embedded WeScheme instance.  The keywords @racket[#:width] and
+@racket[#:height] control the dimensions of the embedded instance.
+}
 
 
 

@@ -10,7 +10,7 @@
 
 
 (define (fill-in-the-blank #:id id
-                           #:width (width 50)
+                           #:columns (width 50)
                            #:label (label #f)
                            ;;#:default (default #f)
                            )
@@ -26,8 +26,8 @@
 
 
 (define (free-response #:id id
-                        #:width (width 50)
-                        #:height (height 20)
+                        #:columns (width 50)
+                        #:rows (height 20)
                         #:label (label #f)
                         ;;#:default (default #f)
                         )
