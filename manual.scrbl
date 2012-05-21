@@ -180,9 +180,9 @@ This is a fill in the blank: @fill-in-the-blank[#:id "name" #:label "What's your
 
 
 @defproc[(free-response [#:id id string?]
-                         [#:width width number? 50]
-                         [#:height height number? 20]
-                         [#:label label (or/c string? #f) #f])
+                        [#:width width number? 50]
+                        [#:height height number? 20]
+                        [#:label label (or/c string? #f) #f])
          element?]{
 
 Creates an empty multi-line element.  The @racket[#:width] and
@@ -199,6 +199,8 @@ This is a free-response: @free-response[#:id "summary"]
 
 
 
+
+@defproc[(embedded-wescheme)]
 
 
 

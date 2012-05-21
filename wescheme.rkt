@@ -1,5 +1,7 @@
 #lang racket/base
 
+;; Provides support for embedded WeScheme instances.
+
 (require net/uri-codec
          racket/match
          scribble/decode
@@ -10,7 +12,7 @@
          (for-syntax racket/base
                      syntax/to-string))
 
-(provide embed-wescheme
+(provide embedded-wescheme
          inject-embedding-libraries
          example)
 
@@ -66,7 +68,7 @@
 
 
 ;; helper functions for embedding internal instances of WeScheme.
-(define (embed-wescheme #:id (id (gensym 'wescheme))
+(define (embedded-wescheme #:id (id (symbol->string (gensym 'wescheme)))
 
                         #:public-id (pid #f)
                         #:width (width "90%")
@@ -112,21 +114,21 @@
   (splice
    (list (sxml->element
           `(div
-            (@ (id ,(symbol->string id))
+            (@ (id ,id)
                (class "embedded-wescheme"))
             ""))
          (inject-javascript
           (format "document.getElementById(~s).style.width=~s; document.getElementById(~s).style.height=~s;"
-                  (symbol->string id)
+                  id
                   (dimension->string width)
-                  (symbol->string id)
+                  id
                   (dimension->string height)))
          (inject-javascript
           (format (if with-rpc?
                       "WeSchemeEmbedded.withRpc(~s, ~s)"
                       "WeSchemeEmbedded.withoutRpc(~s, ~s);")
                   url
-                  (symbol->string id))))))
+                  id)))))
 
 
 ;; dimension->string: (U number string) -> string

@@ -61,24 +61,22 @@ And another: @fill-in-the-blank[#:id "first-name"
 
 
 
-
-
-
 @section{Free response}
 This is a free-response: @free-response[#:id "mytext"].
 
 
 
+
 @section{Embedded wescheme}
 This is an embedded-wescheme instance:
-@embed-wescheme[#:id 'example1
-                      #:public-id "champ-neigh-stoop-sinew-overt"
-                      #:width "70%"]
+@embedded-wescheme[#:id "example1"
+                   #:public-id "champ-neigh-stoop-sinew-overt"
+                   #:width "70%"]
 
 
 Here is another one:
-@embed-wescheme[#:id 'example3
-                      #:interactions-text "(+ 1 2 3)"
-                      #:hide-header? #t
-                      #:hide-footer? #t
-                      #:hide-definitions? #t]
+@embedded-wescheme[#:id "example3"
+                   #:interactions-text "(+ 1 2 3)"
+                   #:hide-header? #t
+                   #:hide-footer? #t
+                   #:hide-definitions? #t]
