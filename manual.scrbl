@@ -363,9 +363,9 @@ For example:
 @codeblock|{
 #lang planet dyoo/scribble-bootstrap
 
-@goals[@item{Read CS papers}
-       @item{Ride cycle}
-       @item{Profit}
+@goals[@item{Eat}
+       @item{Sleep}
+       @item{Study}
       ]
 }|
 
