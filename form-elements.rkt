@@ -15,7 +15,9 @@
 
          worksheet
          lesson
-         drill)
+         drill
+
+         materials)
 
 
 
@@ -71,3 +73,11 @@
 (define (drill . body)
   (compound-paragraph (bootstrap-sectioning-style "BootstrapLesson")
                       (decode-flow body)))
+
+
+
+
+;; TODO: Add a materials
+(define (materials . items)
+  (list "Materials:"
+        (apply itemlist items #:style "BootstrapMaterialsList")))

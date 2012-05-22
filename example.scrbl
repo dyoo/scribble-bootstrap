@@ -100,4 +100,11 @@ Here is another one:
 
 @worksheet{
   This is an example of another worksheet.
+
+  @materials[
+    @item{Rock}
+    @item{Paper}
+    @item{Scissors}
+  ]
 }
+
