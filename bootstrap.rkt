@@ -5,11 +5,11 @@
 (require "tags.rkt"              ;; defines the conditional content generation
          "form-elements.rkt"     ;; defines our customized Scribble elements
          "data-repository.rkt"   ;; will define the server-side data storage
-         "wescheme.rkt")         ;; defines the embedded wescheme support
+         )
 
 
 
 (provide (all-from-out "tags.rkt")
          (all-from-out "form-elements.rkt")
          (all-from-out "data-repository.rkt")
-         (all-from-out "wescheme.rkt"))
+         )

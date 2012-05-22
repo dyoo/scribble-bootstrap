@@ -107,7 +107,9 @@ Here is another one:
     @item{Scissors}
   ]
 
-  @row[#:count 5]{@fill-in-the-blank[#:id "name" #:label "name"] @fill-in-the-blank[#:id "contract" #:label "contract"]
+  @row[#:count 5]{@(number->string (add1 (current-row)))
+                  @fill-in-the-blank[#:id "name" #:label "name"] 
+                  @fill-in-the-blank[#:id "contract" #:label "contract"]
                  }
 
 }
