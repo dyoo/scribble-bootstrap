@@ -114,3 +114,10 @@ Here is another one:
 
 }
 
+
+
+@goals[
+@item{Plant a flower}
+@item{Pack suitcase}
+@item{Go home}
+]

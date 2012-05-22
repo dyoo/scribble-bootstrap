@@ -25,7 +25,8 @@
          drill
 
          ;; Itemizations
-         materials)
+         materials
+         goals)
 
 
 
@@ -136,11 +137,15 @@
 
 
 (define (drill . body)
-  (compound-paragraph (bootstrap-sectioning-style "BootstrapLesson")
+  (compound-paragraph (bootstrap-sectioning-style "BootstrapDrill")
                       (decode-flow body)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; TODO: Add a materials
 (define (materials . items)
   (list "Materials:"
         (apply itemlist items #:style "BootstrapMaterialsList")))
+
+
+(define (goals . items)
+  (list "Goals:"
+        (apply itemlist items #:style "BootstrapGoalsList")))
