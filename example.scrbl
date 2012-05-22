@@ -86,3 +86,19 @@ Here is another one:
                    #:hide-header? #t
                    #:hide-footer? #t
                    #:hide-definitions? #t]
+
+
+
+
+@worksheet{
+  This is an example of a worksheet.  It's a section of the document.
+
+  What do you see here?
+}
+
+
+
+
+@worksheet{
+  This is an example of another worksheet.
+}

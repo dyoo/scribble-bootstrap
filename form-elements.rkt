@@ -1,19 +1,30 @@
 #lang racket/base
 
-(require "sxml.rkt")
+(require "sxml.rkt"
+         racket/runtime-path
+         scribble/base
+         scribble/core
+         scribble/decode
+         scribble/html-properties)
 
 
 ;; FIXME: must add contracts!
 (provide fill-in-the-blank
-         free-response)
+         free-response
+
+
+         worksheet
+         lesson
+         drill)
 
 
 
+
+
+;; One-line input
 (define (fill-in-the-blank #:id id
                            #:columns (width 50)
-                           #:label (label #f)
-                           ;;#:default (default #f)
-                           )
+                           #:label (label #f))
   (sxml->element `(input (@ (type "text")
                             (id ,id)
                             (width ,(number->string width))
@@ -24,13 +35,11 @@
 
 
 
-
+;; Free form text
 (define (free-response #:id id
-                        #:columns (width 50)
-                        #:rows (height 20)
-                        #:label (label #f)
-                        ;;#:default (default #f)
-                        )
+                       #:columns (width 50)
+                       #:rows (height 20)
+                       #:label (label #f))
   (sxml->element `(textarea (@ (id ,id)
                                (cols ,(number->string width))
                                (rows ,(number->string height))
@@ -40,7 +49,24 @@
                             "")))
 
 
+(define-runtime-path bootstrap.css "bootstrap.css")
+(define (bootstrap-style name)
+  (make-style name (list (make-css-addition bootstrap.css)
+                         (make-alt-tag "div"))))
 
-;; free form text
 
-;; wescheme instance
+;; The following provide sectioning for bootstrap.  They provide
+;; worksheets, lessons, and drills.
+(define (worksheet . body)
+  (compound-paragraph (bootstrap-style "BootstrapWorksheet")
+                      (decode-flow body)))
+
+
+(define (lesson . body)
+  (compound-paragraph (bootstrap-style "BootstrapLesson")
+                      (decode-flow body)))
+
+
+(define (drill . body)
+  (compound-paragraph (bootstrap-style "BootstrapLesson")
+                      (decode-flow body)))
