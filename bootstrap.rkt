@@ -2,10 +2,10 @@
 
 ;; Collects all the utility libraries into a single "bootstrap.rkt" for Scribble
 ;; users to include.
-(require "tags.rkt"
-         "form-elements.rkt"
-         "data-repository.rkt"
-         "wescheme.rkt")
+(require "tags.rkt"              ;; defines the conditional content generation
+         "form-elements.rkt"     ;; defines our customized Scribble elements
+         "data-repository.rkt"   ;; will define the server-side data storage
+         "wescheme.rkt")         ;; defines the embedded wescheme support
 
 
 
