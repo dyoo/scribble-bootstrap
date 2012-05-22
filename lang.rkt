@@ -21,6 +21,8 @@
                        . body)]))
 
 
+(define-runtime-path bootstrap-prefix.html (build-path "bootstrap-prefix.html"))
+(define-runtime-path bootstrap.css (build-path "bootstrap.css"))
 
 (define-runtime-path-list js-paths
   (list (build-path "easyXDM.min.js")
@@ -32,7 +34,7 @@
 ;; We also need to include the js files, the dependencies necessary
 ;; to render us.
 (define (change-defaults doc)
-  (define my-extra-files (html-defaults #"" #"" js-paths))
+  (define my-extra-files (html-defaults bootstrap-prefix.html bootstrap.css js-paths))
   (struct-copy part doc
                [style (make-style (style-name (part-style doc))
                                   (cons my-extra-files

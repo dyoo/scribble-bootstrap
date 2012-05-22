@@ -50,23 +50,24 @@
 
 
 (define-runtime-path bootstrap.css "bootstrap.css")
-(define (bootstrap-style name)
+(define (bootstrap-sectioning-style name)
   (make-style name (list (make-css-addition bootstrap.css)
+                         ;; Use <div/> rather than <p/>
                          (make-alt-tag "div"))))
 
 
 ;; The following provide sectioning for bootstrap.  They provide
 ;; worksheets, lessons, and drills.
 (define (worksheet . body)
-  (compound-paragraph (bootstrap-style "BootstrapWorksheet")
+  (compound-paragraph (bootstrap-sectioning-style "BootstrapWorksheet")
                       (decode-flow body)))
 
 
 (define (lesson . body)
-  (compound-paragraph (bootstrap-style "BootstrapLesson")
+  (compound-paragraph (bootstrap-sectioning-style "BootstrapLesson")
                       (decode-flow body)))
 
 
 (define (drill . body)
-  (compound-paragraph (bootstrap-style "BootstrapLesson")
+  (compound-paragraph (bootstrap-sectioning-style "BootstrapLesson")
                       (decode-flow body)))
