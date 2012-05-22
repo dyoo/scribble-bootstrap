@@ -106,5 +106,9 @@ Here is another one:
     @item{Paper}
     @item{Scissors}
   ]
+
+  @row[#:count 5]{@fill-in-the-blank[#:id "name" #:label "name"] @fill-in-the-blank[#:id "contract" #:label "contract"]
+                 }
+
 }
 

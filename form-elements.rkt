@@ -2,25 +2,48 @@
 
 (require "sxml.rkt"
          racket/runtime-path
+         racket/stxparam
          scribble/base
          scribble/core
          scribble/decode
-         scribble/html-properties)
+         scribble/html-properties
+         (for-syntax racket/base))
 
 
 ;; FIXME: must add contracts!
-(provide fill-in-the-blank
+(provide row
+         fill-in-the-blank
          free-response
 
-
+         ;; Sections
          worksheet
          lesson
          drill
 
+         ;; Itemizations
          materials)
 
 
 
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; This provides form loops and indices
+
+
+
+(define-syntax (row stx)
+  (syntax-case stx ()
+    [(row #:count n body ...)
+     ;; FIXME: set up the parameterizations so we can repeat the content
+     #'(build-list n (lambda (i)
+                       (paragraph (make-style "BootstrapRow" (list (make-alt-tag "div")))
+                                  (list body ...))))]))
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 ;; One-line input
@@ -58,7 +81,9 @@
                          (make-alt-tag "div"))))
 
 
-;; The following provide sectioning for bootstrap.  They provide
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The following provides sectioning for bootstrap.  They provide
 ;; worksheets, lessons, and drills.
 (define (worksheet . body)
   (compound-paragraph (bootstrap-sectioning-style "BootstrapWorksheet")
@@ -73,9 +98,7 @@
 (define (drill . body)
   (compound-paragraph (bootstrap-sectioning-style "BootstrapLesson")
                       (decode-flow body)))
-
-
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; TODO: Add a materials
 (define (materials . items)
