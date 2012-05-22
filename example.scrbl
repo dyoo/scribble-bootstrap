@@ -1,4 +1,4 @@
-#lang planet dyoo/scribble-bootstrap:2
+#lang planet dyoo/scribble-bootstrap:3
 @title{Example}
 
 @; Note: this document can be generated in different contexts.

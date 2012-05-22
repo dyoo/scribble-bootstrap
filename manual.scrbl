@@ -221,10 +221,158 @@ published WeScheme program with that id.
 If provided a @racket[#:interactions-text], the embedded instance will
 initialize the interactions window with the given string.
 
+
+For example:
+@codeblock|{
+#lang planet dyoo/scribble-bootstrap
+@embedded-wescheme[#:id "example3"
+                   #:interactions-text "(+ 1 2 3)"
+                   #:hide-header? #t
+                   #:hide-footer? #t
+                   #:hide-definitions? #t]
+}|
 }
 
 
 
+
+@defform[(row #:count [count number?] body ...)]{
+Creates a number of rows with the same content across the body.
+
+For example, the following generates five rows of name/contract
+@racket[fill-in-the-blank] fields:
+@codeblock|{
+#lang planet dyoo/scribble-bootstrap
+@row[#:count 5]{@fill-in-the-blank[#:id "name" #:label "name"] 
+                @fill-in-the-blank[#:id "contract" #:label "contract"]} 
+}|
+
+
+In the context of a @racket[row], the parameter @racket[current-row] can be
+dereferenced to get the current row number.
+@codeblock|{
+#lang planet dyoo/scribble-bootstrap
+@row[#:count 5]{@(number->string (add1 (current-row)))
+                @fill-in-the-blank[#:id "name" #:label "name"] 
+                @fill-in-the-blank[#:id "contract" #:label "contract"]
+               }
+}|
+}
+
+@defthing[current-row (parameterof (or/c number? #f))]{
+The current row number.  Counting starts from zero.  Outside the context
+of a @racket[row], defined as @racket[#f].
+}
+
+
+
+
+
+@defproc[(worksheet [body (listof pre-flow?)] ...) element]{
+Construct a worksheet.
+
+For example:
+@codeblock|{
+#lang planet dyoo/scribble-bootstrap
+
+@worksheet{
+This is a worksheet.
+
+Here are a few fields: @fill-in-the-blank[#:id "f1"]
+}
+
+}|
+
+The selection will have the CSS style @litchar{BootstrapWorksheet}.
+
+}
+
+
+
+@defproc[(lesson [body (listof pre-flow?)] ...) element]{
+Construct a lesson.
+
+For example:
+@codeblock|{
+#lang planet dyoo/scribble-bootstrap
+
+@lesson{
+This is a lesson.
+
+Here are a few fields: @fill-in-the-blank[#:id "f1"]
+}
+
+}|
+
+The selection will have the CSS style @litchar{BootstrapLesson}.
+
+}
+
+
+
+
+@defproc[(drill [body (listof pre-flow?)] ...) element?]{
+Construct a drill.
+
+For example:
+@codeblock|{
+#lang planet dyoo/scribble-bootstrap
+
+@drill{
+This is a drill.
+
+Here are a few fields: @fill-in-the-blank[#:id "f1"]
+}
+
+}|
+
+The selection will have the CSS style @litchar{BootstrapDrill}.
+
+}
+
+
+
+
+@defproc[(materials [items (listof item?)] ...) element?]{
+An @racket[itemlist] that collects a point-itemized list of material items.
+
+For example:
+
+@codeblock|{
+#lang planet dyoo/scribble-bootstrap
+
+@materials[@item{Rock}
+           @item{Paper}
+           @item{Scissors}
+          ]
+}|
+
+The list will have the CSS style @litchar{BootstrapMaterialsList}, and each item will
+have the CSS style @litchar{BootstrapMaterialsListItem}.
+
+}
+
+
+
+
+@defproc[(goals [items (listof item?)] ...) element?]{
+An @racket[itemlist] that collects a point-itemized list of goal items.
+
+For example:
+
+@codeblock|{
+#lang planet dyoo/scribble-bootstrap
+
+@goals[@item{Read CS papers}
+       @item{Ride cycle}
+       @item{Profit}
+      ]
+}|
+
+The list will have the CSS style @litchar{BootstrapGoalsList}, and each item will
+have the CSS style @litchar{BootstrapGoalsListItem}.
+
+}
 
 
 
